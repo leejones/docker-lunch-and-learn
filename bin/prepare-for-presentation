@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+# delete the hello-world image so we can simulate a "first run" experience during the presentation
+(docker images | awk '{print $1}' | grep -q hello-world) && docker rmi -f hello-world
