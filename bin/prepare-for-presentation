@@ -1,5 +1,12 @@
 #!/bin/bash
 set -e
 
-# delete the hello-world image so we can simulate a "first run" experience during the presentation
+# In order to simulate a first time user's experience with many of the docker
+# commands I will demo, I want to delete some of the artifacts created while
+# preparing for he presentation.
+
+echo '## Deleting hello-world image(s)...'
 (docker images | awk '{print $1}' | grep -q hello-world) && docker rmi -f hello-world
+
+echo '## Deleting videos2watch container(s)...'
+docker ps -a -q -f name=videos2watch_* | xargs docker rm -f
