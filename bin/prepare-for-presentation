@@ -5,6 +5,9 @@ set -e
 # commands I will demo, I want to delete some of the artifacts created while
 # preparing for he presentation.
 
+echo '## Deleting any existing lunch-and-learn container(s)...'
+docker ps -a -q -f name=docker-lunch-and-learn | xargs docker rm -f
+
 echo '## Deleting hello-world image(s)...'
 (docker images | awk '{print $1}' | grep -q hello-world) && docker rmi -f hello-world
 
