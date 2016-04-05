@@ -11,6 +11,7 @@ Build the docker image:
 
 ```bash
 git clone https://github.com/leejones/docker-lunch-and-learn.git
+cd docker-lunch-and-learn
 docker build -t docker-lunch-and-learn .
 ```
 
