@@ -3,6 +3,6 @@
 * client
 * daemon (server)
 
-Note:
+![docker architecture](images/linux-docker-host.svg)
 
-https://docs.docker.com/engine/installation/images/linux_docker_host.svg
+<small>image source: docs.docker.com</small>
