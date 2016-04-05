@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+echo '## Creating missing slides...'
+
+function slides() {
+  grep data-markdown\=\" index.html | cut -d '"' -f 2 | grep \.md
+}
+
+function slide_directories() {
+  slides | xargs -I path dirname path | sort -u
+}
+
+slide_directories | xargs mkdir -p
+
+for slide in $(slides); do
+  if [[ ! -f $slide ]]; then
+    echo "Creating $slide"
+    slide_title="$(basename $slide .md | sed -e 's/\-/ /g')"
+    echo "## ${slide_title}" > $slide
+  fi
+done
+
+echo '## Done!'
