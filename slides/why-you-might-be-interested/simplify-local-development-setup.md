@@ -1,7 +1,7 @@
 ## Simplify local development setup
 
 ```bash
-docker-compose up
+bin/setup
 ```
 
 Note:
