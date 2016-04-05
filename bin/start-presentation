@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PRESENTATION_PORT=8000
+
+bin/prepare-for-presentation
+
+function start_presentation() {
+  docker run \
+    -i \
+    --name docker-lunch-and-learn \
+    -p $PRESENTATION_PORT:$PRESENTATION_PORT \
+    --rm \
+    -t \
+    -v $PWD/images:/reveal.js/images \
+    -v $PWD/index.html:/reveal.js/index.html \
+    -v $PWD/slides:/reveal.js/slides \
+    leejones/docker-lunch-and-learn
+}
+
+function open_browser() {
+  sleep 5 # wait for container to start
+  open "http://$(docker-machine ip default):${PRESENTATION_PORT}"
+}
+
+open_browser &
+start_presentation
